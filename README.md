@@ -65,7 +65,7 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## 📧 Contact
 
-For any questions or suggestions, feel free to reach out to [your email].
+For any questions or suggestions, feel free to reach out to me on [GitHub](https://github.com/Alby11).
 
 ---
 
