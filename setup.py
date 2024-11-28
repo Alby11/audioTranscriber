@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 from openai import OpenAI
 from pydub import AudioSegment
+from tqdm import tqdm
 import os
 
 
@@ -31,7 +32,8 @@ def transcribe_file(file_path):
     client = OpenAI()
     chunk_files = split_audio(file_path)
     transcription_text = ""
-    for chunk_file in chunk_files:
+    print("Processing...")
+    for chunk_file in tqdm(chunk_files, desc="Transcribing", unit="chunk"):
         with open(chunk_file, "rb") as audio_file:
             transcription = client.audio.transcriptions.create(
                 model="whisper-1", file=audio_file, response_format="text"
@@ -44,6 +46,8 @@ def transcribe_file(file_path):
     transcription_file = f"{base_name}_transcription.txt"
     with open(transcription_file, "w") as f:
         f.write(transcription_text)
+
+    print("Transcription completed successfully!")
 
 
 if __name__ == "__main__":
