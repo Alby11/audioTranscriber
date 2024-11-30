@@ -1,29 +1,43 @@
+import os
 import tkinter as tk
 from tkinter import filedialog
 from openai import OpenAI
 from pydub import AudioSegment
 from tqdm import tqdm
-import os
 
 
 def select_file():
     root = tk.Tk()
     root.withdraw()  # Hide the root window
     file_path = filedialog.askopenfilename(
-        filetypes=[("MP3 files", "*.mp3")], title="Select an MP3 file"
+        filetypes=[
+            ("MP3 files", "*.mp3"),
+            ("MP4 files", "*.mp4"),
+            ("MPEG files", "*.mpeg"),
+            ("MPGA files", "*.mpga"),
+            ("M4A files", "*.m4a"),
+            ("WAV files", "*.wav"),
+            ("WEBM files", "*.webm"),
+        ],
+        title="Select an audio file",
     )
     return file_path
 
 
 def split_audio(file_path, chunk_length_ms=60000):
-    audio = AudioSegment.from_mp3(file_path)
+    audio = AudioSegment.from_file(file_path)
+    file_extension = os.path.splitext(file_path)[1][
+        1:
+    ]  # Get file extension without dot
     chunks = [
         audio[i : i + chunk_length_ms] for i in range(0, len(audio), chunk_length_ms)
     ]
     chunk_files = []
     for i, chunk in enumerate(chunks):
-        chunk_file = f"chunk_{i}.mp3"
-        chunk.export(chunk_file, format="mp3")
+        chunk_file = f"chunk_{i}.{file_extension}"
+        chunk.export(
+            chunk_file, format="mp4" if file_extension == "m4a" else file_extension
+        )
         chunk_files.append(chunk_file)
     return chunk_files
 
