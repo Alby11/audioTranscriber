@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Audio Transcriber",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/setup.py",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/venv/bin/python"
+      }
+    }
+  ]
+}
