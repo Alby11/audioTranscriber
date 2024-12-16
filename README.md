@@ -1,13 +1,14 @@
 # 🎧 Audio Transcriber
 
-Welcome to the **Audio Transcriber** project! This tool allows you to select MP3 files and transcribe their audio content using the OpenAI API. The transcriptions are saved as text files named after the source audio files.
+Welcome to the **Audio Transcriber** project! This tool allows you to select audio files and transcribe their content using the OpenAI API. The transcriptions are saved as text files named after the source audio files.
 
 ## 📋 Features
 
-- 🎵 **Select MP3 Files**: Easily select MP3 files using a graphical file dialog.
+- 🎵 **Select Audio Files**: Easily select audio files using a graphical file dialog.
 - ✂️ **Split Audio**: Automatically split large audio files into smaller chunks.
 - 📝 **Transcribe Audio**: Transcribe audio content using the OpenAI API.
 - 💾 **Save Transcriptions**: Save transcriptions to text files named after the source audio files.
+- ✨ **Refine Transcriptions**: Optionally refine transcriptions using a custom prompt with GPT-4.
 
 ## 🚀 Getting Started
 
@@ -15,6 +16,7 @@ Welcome to the **Audio Transcriber** project! This tool allows you to select MP3
 
 - Python 3.x
 - Virtual environment (optional but recommended)
+- OpenAI API key
 
 ### Installation
 
@@ -32,8 +34,15 @@ Welcome to the **Audio Transcriber** project! This tool allows you to select MP3
 
 3. **Install the required libraries**:
    ```sh
-   pip install openai pydub
+   pip install openai pydub tqdm
    ```
+
+4. **Set up the OpenAI API key**:
+   - Obtain your OpenAI API key from [OpenAI](https://platform.openai.com/account/api-keys).
+   - Set the `OPENAI_API_KEY` environment variable:
+     ```sh
+     export OPENAI_API_KEY='your-api-key-here'
+     ```
 
 ### Usage
 
@@ -42,14 +51,17 @@ Welcome to the **Audio Transcriber** project! This tool allows you to select MP3
    python setup.py
    ```
 
-2. **Select an MP3 file**:
-   - A file dialog will pop up. Select the MP3 file you want to transcribe.
+2. **Select an audio file**:
+   - A file dialog will pop up. Select the audio file you want to transcribe.
 
-3. **Wait for the transcription**:
+3. **Optionally input a prompt**:
+   - You will be asked if you want to input a prompt to refine the transcript. If you choose yes, enter your prompt.
+
+4. **Wait for the transcription**:
    - The script will split the audio file into chunks, transcribe each chunk, and save the transcription to a text file.
 
-4. **Find your transcription**:
-   - The transcription will be saved in the same directory as the source audio file, with `_transcription.txt` appended to the base name.
+5. **Find your transcription**:
+   - The transcription will be saved in the same directory as the source audio file, with `_raw_transcription.txt` and `_corrected_transcription.txt` appended to the base name.
 
 ## 🛠️ Configuration
 
