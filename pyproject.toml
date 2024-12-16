@@ -6,9 +6,12 @@ authors = ["alby11 <alby11@duck.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.13"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+audiotranscriber = "audiotranscriber.main:main_function"
