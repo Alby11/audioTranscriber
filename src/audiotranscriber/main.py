@@ -64,7 +64,7 @@ def transcribe_file(file_path):
     print("Transcription completed successfully!")
 
 
-if __name__ == "__main__":
+def main_function():
     file_path = select_file()
     if file_path:
         transcribe_file(file_path)
